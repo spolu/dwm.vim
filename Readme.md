@@ -26,4 +26,4 @@ Use the following commands to create, browse and close windows:
 
 There is only one tiled layout available right now, but do not hesitate to *fork it*!
 
-And for inception lovers... [BOOOOWWWMM](https://docs.google.com/a/teleportd.com/file/d/0B-zgpFS3PwF1cFp2OTFyM2k3RUU)
+And for inception lovers... [BOOOOOOOWWWMM](https://docs.google.com/open?id=0B-zgpFS3PwF1cFp2OTFyM2k3RUU)
