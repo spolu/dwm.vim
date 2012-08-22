@@ -26,7 +26,7 @@ Use the following commands to create, browse and close windows:
 
 ### ScreenShot
 
-http://i.imgur.com/TKL4i.png
+![](http://i.imgur.com/TKL4i.png)
 
 ### Remarks
 
