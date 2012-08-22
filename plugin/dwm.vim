@@ -65,13 +65,12 @@ endfunction
 
 function! DWM_TopBuf(buffer)
   let b = a:buffer
-  echo s:dwm_bufs
   let idx = index(s:dwm_bufs,b)
   if idx != -1
     call remove(s:dwm_bufs,idx)
     call insert(s:dwm_bufs,b)
   endif
-  echo s:dwm_bufs
+  " echo s:dwm_bufs
 endfunction
 
 
