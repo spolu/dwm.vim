@@ -2,6 +2,7 @@ dwm.vim adds tiled window management capabilities to Vim. It is highly inspired 
 
 Windows are always organised as follows: 
 
+```
 ===================================
 |              |        S1        | 
 |              |===================
@@ -9,6 +10,7 @@ Windows are always organised as follows:
 |              |===================
 |              |        S3        | 
 ===================================
+```
 
 Use the following commands to create, close and browse windows: 
 
