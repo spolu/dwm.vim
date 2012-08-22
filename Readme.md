@@ -1,3 +1,5 @@
+### dwm.vim : Tiled Window Management for Vim
+
 dwm.vim adds tiled window management capabilities to Vim. It is highly inspired by dwm (Dynamic Window Manager) [http://dwm.suckless.org/] tiled layout management. 
 
 Windows are always organised as follows: 
