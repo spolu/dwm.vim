@@ -24,4 +24,6 @@ Use the following commands to create, browse and close windows:
 - `CTRL-K` Jumps to previous window (anti-clockwise) 
 - `CTRL-F` Focus the current window, that is, place it in the [M] area & stacks all other windows in the [S] areas 
 
-There is only one tiled layout available right now, but do not hesitate to fork it!
+There is only one tiled layout available right now, but do not hesitate to *fork it*!
+
+And for inception lovers... [BOOOOWWWMM](https://docs.google.com/a/teleportd.com/file/d/0B-zgpFS3PwF1cFp2OTFyM2k3RUU)
