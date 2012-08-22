@@ -1,6 +1,7 @@
 ### dwm.vim : Tiled Window Management for Vim
 
-dwm.vim adds tiled window management capabilities to Vim. It is highly inspired by dwm (Dynamic Window Manager) [http://dwm.suckless.org/] tiled layout management. 
+dwm.vim adds tiled window management capabilities to Vim. It is highly inspired by [dwm](http://dwm.suckless.org/) (Dynamic Window Manager) tiled layout management. 
+Download link on vim.org: http://www.vim.org/scripts/script.php?script_id=4186
 
 Windows are always organised as follows: 
 
@@ -14,7 +15,7 @@ Windows are always organised as follows:
 ===================================
 ```
 
-Use the following commands to create, close and browse windows: 
+Use the following commands to create, browse and close windows: 
 
 - `CTRL-N` Creates a new window and place it in the area [M] & stacks all previous windows in the [S] areas. 
 - `CTRL-C` Close the current window if no unsaved changes 
@@ -22,4 +23,4 @@ Use the following commands to create, close and browse windows:
 - `CTRL-K` Jumps to previous window (anti-clockwise) 
 - `CTRL-F` Focus the current window, that is, place it in the [M] area & stacks all other windows in the [S] areas 
 
-There is only one tiled layout available right now, but the project is open for contribution!
+There is only one tiled layout available right now, but do not hesitate to fork it!
