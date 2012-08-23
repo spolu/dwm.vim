@@ -35,15 +35,15 @@ endif
 " Script Array for storing Buffer order
 let s:dwm_bufs = []
 
-function! DWM_BufCount() 
-  let cnt = 0 
-  for nr in range(1,bufnr("$")) 
-    if buflisted(nr) 
-      let cnt += 1 
-    endif 
-  endfor 
-  return cnt 
-endfunction 
+function! DWM_BufCount()
+  let cnt = 0
+  for nr in range(1,bufnr("$"))
+    if buflisted(nr)
+      let cnt += 1
+    endif
+  endfor
+  return cnt
+endfunction
 
 function! DWM_SyncBufs()
   for nr in range(1,bufnr('$'))
@@ -55,9 +55,9 @@ function! DWM_SyncBufs()
   endfor
   for r_idx in range(1,len(s:dwm_bufs))
     let idx = len(s:dwm_bufs)-r_idx
-    if !(buflisted(s:dwm_bufs[idx])) 
+    if !(buflisted(s:dwm_bufs[idx]))
       " echo idx
-      call remove(s:dwm_bufs,idx) 
+      call remove(s:dwm_bufs,idx)
     endif
   endfor
   " echo s:dwm_bufs
@@ -98,7 +98,7 @@ endfunction
 function! DWM_Close()
   bd
   call DWM_Ball()
-  if DWM_BufCount() > 1  
+  if DWM_BufCount() > 1
     " we just called ball we are at the top buffer
     let cb = s:dwm_bufs[0]
     hide
@@ -109,11 +109,27 @@ endfunction
 function! DWM_Focus()
   call DWM_TopBuf(bufnr('%'))
   call DWM_Ball()
-  if DWM_BufCount() > 1  
+  if DWM_BufCount() > 1
     " we just called ball we are at the top buffer
     let cb = s:dwm_bufs[0]
     hide
     exec 'vert topleft sb ' . cb
+  endif
+endfunction
+
+function! DWM_VertResizeShrink()
+  if winnr() == 1
+    exec "vertical resize -1"
+  else
+    exec "vertical resize +1"
+  endif
+endfunction
+
+function! DWM_VertResizeGrow()
+  if winnr() == 1
+    exec "vertical resize +1"
+  else
+    exec "vertical resize -1"
   endif
 endfunction
 
@@ -122,13 +138,13 @@ if !exists('g:dwm_map_keys')
 endif
 
 if g:dwm_map_keys
-    map <C-N> :call DWM_New()<CR>
-    map <C-C> :call DWM_Close()<CR>
-    map <C-H> :call DWM_Focus()<CR>
-    " map <C-B> :call DWM_Ball()<CR>
-    map <C-J> <C-W>w
-    map <C-K> <C-W>W
-    map <C-B> :ls<CR>
+  map <C-N> :call DWM_New()<CR>
+  map <C-C> :call DWM_Close()<CR>
+  map <C-T> :call DWM_Focus()<CR>
+  " map <C-B> :call DWM_Ball()<CR>
+  map <C-J> <C-W>w
+  map <C-K> <C-W>W
+  map <C-B> :ls<CR>
+  map <C-H> :call DWM_VertResizeShrink()<CR>
+  map <C-L> :call DWM_VertResizeGrow()<CR>
 endif
-
-
