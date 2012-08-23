@@ -35,7 +35,7 @@ There is only one tiled layout available right now, but do not hesitate to *fork
 For fun, I urge you to try using `dwm.vim` in `vim`, in `tmux`, in `ssh`, in `tmux`, in `xterm`, in `dwm`.
 
 Thanks *luriel* for this awesome comment on the [HN post](http://news.ycombinator.com/item?id=4419530) 
-related to `dwn.vim`:
+related to `dwm.vim`:
 
 > As one of the original instigators of dwm and wmii before that (mostly by shouting at garbeam) 
 > I want to point out that this kind of tiled window management was first introduced in larswm 
