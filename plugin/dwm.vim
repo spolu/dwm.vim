@@ -117,17 +117,18 @@ function! DWM_Focus()
   endif
 endfunction
 
+if !exists('g:dwm_map_keys')
+    let g:dwm_map_keys = 1
+endif
 
+if g:dwm_map_keys
+    map <C-N> :call DWM_New()<CR>
+    map <C-C> :call DWM_Close()<CR>
+    map <C-H> :call DWM_Focus()<CR>
+    " map <C-B> :call DWM_Ball()<CR>
+    map <C-J> <C-W>w
+    map <C-K> <C-W>W
+    map <C-B> :ls<CR>
+endif
 
-
-
-map <C-N> :call DWM_New()<CR>
-map <C-C> :call DWM_Close()<CR>
-map <C-H> :call DWM_Focus()<CR>
-" map <C-B> :call DWM_Ball()<CR>
-
-map <C-J> <C-W>w
-map <C-K> <C-W>W
-
-map <C-B> :ls<CR>
 
