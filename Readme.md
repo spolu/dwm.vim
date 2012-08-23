@@ -48,5 +48,6 @@ related to `dwm.vim`:
 
 ```
 @dsapala (Dan Sapala)
+@rhacker
 ```
 
