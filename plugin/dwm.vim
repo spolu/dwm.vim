@@ -10,7 +10,7 @@
 " Name Of File: dwm.vim
 "  Description: Dynamic Window Manager behaviour for Vim
 "   Maintainer: Stanislas Polu (polu.stanislas at gmail dot com)
-" Last Changed: Tuesday, 22 August 2012
+" Last Changed: Tuesday, 23 August 2012
 "      Version: See g:dwm_version for version number.
 "        Usage: This file should reside in the plugin directory and be
 "               automatically sourced.
@@ -24,7 +24,7 @@ if exists("g:dwm_version") || &cp
   finish
 endif
 
-let g:dwm_version = "0.1.0"
+let g:dwm_version = "0.1.1"
 
 " Check for Vim version 700 or greater {{{1
 if v:version < 700
