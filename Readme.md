@@ -34,7 +34,8 @@ There is only one tiled layout available right now, but do not hesitate to *fork
 
 And for inception lovers... [BOOOOOOOWWWMM](https://docs.google.com/open?id=0B-zgpFS3PwF1cFp2OTFyM2k3RUU)
 
-*luriel* states on the (HN post)[http://news.ycombinator.com/item?id=4419530] related to `dwn.vim`:
+THanks *luriel* for this awesome statement on the [HN post](http://news.ycombinator.com/item?id=4419530) 
+related to `dwn.vim`:
 
 > As one of the original instigators of dwm and wmii before that (mostly by shouting at garbeam) 
 > I want to point out that this kind of tiled window management was first introduced in larswm 
