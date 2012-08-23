@@ -32,9 +32,9 @@ Use the following commands to create, browse and close windows:
 
 There is only one tiled layout available right now, but do not hesitate to *fork it*!
 
-And for inception lovers... [BOOOOOOOWWWMM](https://docs.google.com/open?id=0B-zgpFS3PwF1cFp2OTFyM2k3RUU)
+For fun, I urge you to try using `dwm.vim` in `vim`, in `tmux`, in `ssh`, in `tmux`, in `xterm`, in `dwm`.
 
-THanks *luriel* for this awesome statement on the [HN post](http://news.ycombinator.com/item?id=4419530) 
+Thanks *luriel* for this awesome comment on the [HN post](http://news.ycombinator.com/item?id=4419530) 
 related to `dwn.vim`:
 
 > As one of the original instigators of dwm and wmii before that (mostly by shouting at garbeam) 
@@ -43,3 +43,10 @@ related to `dwn.vim`:
 > environment ( http://acme.cat-v.org ). 
 > So in a way we have gone full circle, from text editor, to window managers, back to text editor.
 > That said, I still prefer Acme to vim, but would be really cool if somebody added mouse chording to vim :)
+
+### Contributors
+
+```
+@dsapala (Dan Sapala)
+```
+
