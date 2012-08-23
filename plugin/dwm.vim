@@ -123,7 +123,7 @@ endfunction
 
 map <C-N> :call DWM_New()<CR>
 map <C-C> :call DWM_Close()<CR>
-map <C-F> :call DWM_Focus()<CR>
+map <C-H> :call DWM_Focus()<CR>
 " map <C-B> :call DWM_Ball()<CR>
 
 map <C-J> <C-W>w
