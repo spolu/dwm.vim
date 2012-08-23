@@ -18,11 +18,12 @@ Windows are always organised as follows:
 
 Use the following commands to create, browse and close windows: 
 
-- `CTRL-N` Creates a new window and place it in the area [M] & stacks all previous windows in the [S] areas. 
-- `CTRL-C` Close the current window if no unsaved changes 
-- `CTRL-J` Jumps to next window (clockwise) 
-- `CTRL-K` Jumps to previous window (anti-clockwise) 
-- `CTRL-H` Focus the current window, that is, place it in the [M] area & stacks all other windows in the [S] areas 
+- `C-N` Creates a new window and place it in the area [M] & stacks all previous windows in the [S] areas. 
+- `C-C` Close the current window if no unsaved changes 
+- `C-J` Jumps to next window (clockwise) 
+- `C-K` Jumps to previous window (anti-clockwise) 
+- `C-H` Focus the current window, that is, place it in the [M] area & stacks all other windows in the [S] areas 
+- `C-L` Fullscreen mode for the current window (use focus to return to normal mode)
 
 ### ScreenShot
 
