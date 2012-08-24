@@ -53,5 +53,6 @@ related to `dwm.vim`:
 @matze (Matthias Vogelgesang)
 @mitnk
 @tony (Tony Narlock)
+@lmarburger (Larry Marburger)
 ```
 
