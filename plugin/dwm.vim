@@ -87,33 +87,7 @@ function! DWM_Ball()
   endif
 endfunction
 
-
-function! DWM_Full ()
-  exec 'sb ' .  bufnr('%')
-  on!
-endfunction
-
-function! DWM_New ()
-  call DWM_Ball()
-  vert topleft new
-  call DWM_SyncBufs()
-  call DWM_TopBuf(bufnr('%'))
-  call DWM_ResizeMasterPaneWidth()
-endfunction
-
-function! DWM_Close()
-  bd
-  call DWM_Ball()
-  if DWM_BufCount() > 1
-    " we just called ball we are at the top buffer
-    let cb = s:dwm_bufs[0]
-    hide
-    exec 'vert topleft sb ' . cb
-  endif
-endfunction
-
-function! DWM_Focus()
-  call DWM_TopBuf(bufnr('%'))
+function! DWM_Layout()
   call DWM_Ball()
   if DWM_BufCount() > 1
     " we just called ball we are at the top buffer
@@ -124,11 +98,34 @@ function! DWM_Focus()
   endif
 endfunction
 
+
 function DWM_ResizeMasterPaneWidth()
   " resize the master pane if user defined it
   if exists('g:dwm_master_pane_width')
     exec 'vertical resize ' . g:dwm_master_pane_width
   endif
+endfunction
+
+
+function! DWM_Full ()
+  exec 'sb ' .  bufnr('%')
+  on!
+endfunction
+
+function! DWM_New ()
+  new
+  call DWM_SyncBufs()
+  call DWM_Focus()
+endfunction
+
+function! DWM_Close()
+  bd
+  call DWM_Layout()
+endfunction
+
+function! DWM_Focus()
+  call DWM_TopBuf(bufnr('%'))
+  call DWM_Layout()
 endfunction
 
 

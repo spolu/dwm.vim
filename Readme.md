@@ -31,6 +31,7 @@ Use the following commands to create, browse and close windows:
 
 ### Optional Settings
 
+- `g:dwm_map_keys`: if set to a falsey value, prevents key mapping.
 - `g:dwm_master_pane_width`: set the width of the master pane (e.g. `g:dwm_master_pane_width=85`)
 
 ### Remarks
@@ -54,5 +55,9 @@ related to `dwm.vim`:
 ```
 @dsapala (Dan Sapala)
 @rhacker
+@matze (Matthias Vogelgesang)
+@mitnk
+@tony (Tony Narlock)
+@lmarburger (Larry Marburger)
 ```
 

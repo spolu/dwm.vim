@@ -1,0 +1,131 @@
+*dwm.txt*   Tiled Window Management for Vim
+*dwm*
+
+
+==============================================================================
+CONTENTS                                                        *dwm-contents*
+
+    1.Intro...................................|dwm-intro|
+    2.Commands................................|dwm-commands|
+    3.Mappings................................|dwm-mappings|
+    4.Options.................................|dwm-options|
+    5.Changelog...............................|dwm-changelog|
+    6.Credits.................................|dwm-credits|
+    7.License.................................|dwm-license|
+
+
+==============================================================================
+INTRO                                                              *dwm-intro*
+
+dwm.vim adds tiled window management capabilities to Vim. It is highly
+inspired by dwm (Dynamic Window Manager) tiled layout management.
+
+Windows are always organised defined by the following layout consisting of a
+master pane on the left and a stacked pane on the right side:
+
+    +---------------------------------+
+    |              |        S1        |
+    |              |------------------|
+    |      M       |        S2        |
+    |              |------------------|
+    |              |        S3        |
+    +---------------------------------+
+
+|:DWM_New| creates a new window in the master pane that is associated with a
+new empty buffer. The previous master window is pushed on top of the stacked
+pane. |:DWM_Closes| closes any window as long as no unsaved changes are
+pending and updates the layout. An active, stacked window is focused and moved
+to the master pane with |:DWM_Focus|. Any window can occupy the full screen
+with |:DWM_Full| and return from that state with |:DWM_Focus|.
+
+Official releases can be found on vim.org:
+
+    http://www.vim.org/scripts/script.php?script_id=4186
+
+Development happens on GitHub.com:
+
+    https://github.com/spolu/dwm.vim
+
+
+==============================================================================
+COMMANDS                                                        *dwm-commands*
+
+:DWM_New                                                            *:DWM_New*
+
+Creates a new window with an empty buffer in the master pane.
+
+
+:DWM_Close                                                        *:DWM_Close*
+
+Closes the active window if no unsaved changes are pending.
+
+
+:DWM_Focus                                                        *:DWM_Focus*
+
+Focus the active window by placing it in the master pane.
+
+
+:DWM_Full                                                          *:DWM_Full*
+
+Make the active window full screen. Use |'DWM_Focus'| to return to normal
+mode.
+
+
+==============================================================================
+MAPPINGS                                                        *dwm-mappings*
+
+When |'g:dwm_map_keys'| is not defined or set to 1 the following keys are
+mapped:
+
+  <c-n>     |:DWM_New|
+  <c-c>     |:DWM_Close|
+  <c-h>     |:DWM_Focus|
+  <c-l>     |:DWM_Full|
+  <c-j>     Move cursor clockwise to the next window
+  <c-k>     Move cursor counter-clockwise to the previous window
+
+
+==============================================================================
+OPTIONS                                                          *dwm-options*
+
+                                                            *'g:dwm_map_keys'*
+Default: 1
+If enabled, dwm maps control keys to the commands.
+>
+    let g:dwm_map_keys=0
+<
+
+                                                   *'g:dwm_master_pane_width'*
+Default: ?
+Set the width of the master pane.
+>
+    let g:dwm_master_pane_width=85
+<
+
+
+==============================================================================
+CHANGELOG                                                      *dwm-changelog*
+
+x.y.z
+    - Foo
+
+==============================================================================
+CREDITS                                                          *dwm-credits*
+
+Maintained by
+
+    Stanislas Polu (spolu)
+
+Contributors in alphabetical order
+
+    Dan Sapala (dsapala)
+    Matthias Vogelgesang (matze)
+    mitnk (mitnk)
+    Tony Narlock (tony)
+    rhacker (rhacker)
+
+
+==============================================================================
+6. License                                                       *dwm-license*
+
+
