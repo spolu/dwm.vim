@@ -94,10 +94,9 @@ function! DWM_Full ()
 endfunction
 
 function! DWM_New ()
-  call DWM_Ball()
-  vert topleft new
+  new
   call DWM_SyncBufs()
-  call DWM_TopBuf(bufnr('%'))
+  call DWM_Focus()
 endfunction
 
 function! DWM_Close()
