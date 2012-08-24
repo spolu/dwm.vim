@@ -101,17 +101,15 @@ endfunction
 
 function! DWM_Close()
   bd
-  call DWM_Ball()
-  if DWM_BufCount() > 1
-    " we just called ball we are at the top buffer
-    let cb = s:dwm_bufs[0]
-    hide
-    exec 'vert topleft sb ' . cb
-  endif
+  call DWM_Layout()
 endfunction
 
 function! DWM_Focus()
   call DWM_TopBuf(bufnr('%'))
+  call DWM_Layout()
+endfunction
+
+function! DWM_Layout()
   call DWM_Ball()
   if DWM_BufCount() > 1
     " we just called ball we are at the top buffer
