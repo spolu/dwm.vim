@@ -98,6 +98,7 @@ function! DWM_New ()
   vert topleft new
   call DWM_SyncBufs()
   call DWM_TopBuf(bufnr('%'))
+  call DWM_ResizeMainWindow()
 endfunction
 
 function! DWM_Close()
@@ -119,6 +120,14 @@ function! DWM_Focus()
     let cb = s:dwm_bufs[0]
     hide
     exec 'vert topleft sb ' . cb
+    call DWM_ResizeMainWindow()
+  endif
+endfunction
+
+function DWM_ResizeMainWindow()
+  " resize the main window if user defined it
+  if exists('g:dwm_main_window_width')
+    exec 'vertical resize ' . g:dwm_main_window_width
   endif
 endfunction
 
