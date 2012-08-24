@@ -117,6 +117,7 @@ function! DWM_New ()
   vert topleft new
   call DWM_SyncBufs()
   call DWM_TopBuf(bufnr('%'))
+  call DWM_ResizeMasterPaneWidth()
 endfunction
 
 function! DWM_Close()
