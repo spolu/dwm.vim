@@ -50,5 +50,9 @@ related to `dwm.vim`:
 ```
 @dsapala (Dan Sapala)
 @rhacker
+@matze (Matthias Vogelgesang)
+@mitnk
+@tony (Tony Narlock)
+
 ```
 
