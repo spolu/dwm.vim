@@ -31,9 +31,9 @@ Use the following commands to create, browse and close windows:
 
 ### Optional Settings
 
-- `g:dwm_main_window_width`: set the width of the main window
+- `g:dwm_master_pane_width`: set the width of the master pane
 
-e.g. put `g:dwm_main_window_width=85` in you vimrc (85 including the width of line numbers)
+e.g. put `g:dwm_master_pane_width=85` in you vimrc (85 including the width of line numbers)
 
 ### Remarks
 
