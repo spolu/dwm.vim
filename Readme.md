@@ -29,6 +29,12 @@ Use the following commands to create, browse and close windows:
 
 ![](http://i.imgur.com/TKL4i.png)
 
+### Optional Settings
+
+- `g:dwm_main_windown_width`: set the width of the main window
+
+e.g. put `g:dwm_main_windown_width=85` in you vimrc (85 including the width of line numbers)
+
 ### Remarks
 
 There is only one tiled layout available right now, but do not hesitate to *fork it*!
