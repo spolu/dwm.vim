@@ -32,72 +32,23 @@ if v:version < 700
   finish
 endif
 
-" Script Array for storing Buffer order
-let s:dwm_bufs = []
+if !exists('g:dwm_map_keys')
+  let g:dwm_map_keys = 1
+endif
 
-function! DWM_BufCount()
-  let cnt = 0
-  for nr in range(1,bufnr("$"))
-    if buflisted(nr)
-      let cnt += 1
-    endif
-  endfor
-  return cnt
-endfunction
-
-function! DWM_SyncBufs()
-  for nr in range(1,bufnr('$'))
-    if buflisted(nr)
-      if index(s:dwm_bufs,nr) == -1
-        let s:dwm_bufs += [nr]
-      endif
-    endif
-  endfor
-  for r_idx in range(1,len(s:dwm_bufs))
-    let idx = len(s:dwm_bufs)-r_idx
-    if !(buflisted(s:dwm_bufs[idx]))
-      " echo idx
-      call remove(s:dwm_bufs,idx)
-    endif
-  endfor
-  " echo s:dwm_bufs
-endfunction
-
-function! DWM_TopBuf(buffer)
-  let b = a:buffer
-  let idx = index(s:dwm_bufs,b)
-  if idx != -1
-    call remove(s:dwm_bufs,idx)
-    call insert(s:dwm_bufs,b)
-  endif
-  " echo s:dwm_bufs
-endfunction
-
-
-function! DWM_Ball()
-  call DWM_SyncBufs()
-  exec 'sb ' . s:dwm_bufs[len(s:dwm_bufs)-1]
-  on!
-  call DWM_SyncBufs()
-  if len(s:dwm_bufs) > 1
-    for idx in range(1,len(s:dwm_bufs)-1)
-      let r_idx = (len(s:dwm_bufs)-1) - idx
-      exec 'topleft sb ' . s:dwm_bufs[r_idx]
+function! DWM_Shuffle()
+  wincmd H
+  if winnr('$') > 2
+    for nr in range(2, winnr('$'))
+      wincmd w
+      wincmd J
+      wincmd w
     endfor
   endif
+  1wincmd w
+  wincmd H
+  exec DWM_ResizeMasterPaneWidth()
 endfunction
-
-function! DWM_Layout()
-  call DWM_Ball()
-  if DWM_BufCount() > 1
-    " we just called ball we are at the top buffer
-    let cb = s:dwm_bufs[0]
-    hide
-    exec 'vert topleft sb ' . cb
-    call DWM_ResizeMasterPaneWidth()
-  endif
-endfunction
-
 
 function DWM_ResizeMasterPaneWidth()
   " resize the master pane if user defined it
@@ -106,40 +57,31 @@ function DWM_ResizeMasterPaneWidth()
   endif
 endfunction
 
-
-function! DWM_Full ()
-  exec 'sb ' .  bufnr('%')
-  on!
+function! DWM_New()
+  new
+  call DWM_Shuffle()
 endfunction
 
-function! DWM_New ()
-  call DWM_Ball()
-  vert topleft new
-  call DWM_SyncBufs()
-  call DWM_TopBuf(bufnr('%'))
-  call DWM_ResizeMasterPaneWidth()
-endfunction
-
+" TODO: Refocus the window that received focus after `bd` to preserve expected
+" behavior. Currently window #1 will always receive focus.
 function! DWM_Close()
   bd
-  call DWM_Layout()
+  1wincmd w
+  call DWM_Shuffle()
 endfunction
 
-function! DWM_Focus()
-  call DWM_TopBuf(bufnr('%'))
-  call DWM_Layout()
+" TODO: Decide how to best handle focusing a single window given the
+" observations in issue #18.
+" https://github.com/spolu/dwm.vim/issues/18
+function! DWM_Full()
+  echo 'DWM_Full not implemented.'
 endfunction
-
-
-if !exists('g:dwm_map_keys')
-  let g:dwm_map_keys = 1
-endif
 
 if g:dwm_map_keys
   map <C-N> :call DWM_New()<CR>
   map <C-C> :call DWM_Close()<CR>
-  map <C-Space> :call DWM_Focus()<CR>
-  map <C-@> :call DWM_Focus()<CR>
+  map <C-Space> :call DWM_Shuffle()<CR>
+  map <C-@> :call DWM_Shuffle()<CR>
   " In preparation of mode system
   map <C-M> :call DWM_Full()<CR>
   map <C-J> <C-W>w
