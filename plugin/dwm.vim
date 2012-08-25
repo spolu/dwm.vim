@@ -36,24 +36,36 @@ if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
 endif
 
+if !exists('g:dwm_master_windows')
+  let g:dwm_master_windows = 1
+endif
+
 function! DWM_Shuffle()
   wincmd H
-  if winnr('$') > 2
+  if winnr('$') > g:dwm_master_windows + 1
     for nr in range(2, winnr('$'))
       wincmd w
       wincmd J
       wincmd w
     endfor
   endif
+
+  " Arrange master windows
+  for nr in range(1, min([g:dwm_master_windows, winnr('$')]))
+    exec g:dwm_master_windows . 'wincmd w'
+    wincmd H
+    exec DWM_ResizeMasterPaneWidth()
+  endfor
   1wincmd w
-  wincmd H
-  exec DWM_ResizeMasterPaneWidth()
 endfunction
 
 function DWM_ResizeMasterPaneWidth()
   " resize the master pane if user defined it
   if exists('g:dwm_master_pane_width')
-    exec 'vertical resize ' . g:dwm_master_pane_width
+    for nr in range(1, min([g:dwm_master_windows, winnr('$')]))
+      exec nr . 'wincmd w'
+      exec 'vertical resize ' . g:dwm_master_pane_width
+    endfor
   endif
 endfunction
 
