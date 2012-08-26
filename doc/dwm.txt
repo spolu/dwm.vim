@@ -97,9 +97,14 @@ If enabled, dwm maps control keys to the commands.
 
                                                    *'g:dwm_master_pane_width'*
 Default: ?
-Set the width of the master pane.
+Set the width of the master pane. If the value is given as a string, the width
+will be set to a relative percentage of the editor's width.
 >
+    "set master pane width to 85 columns
     let g:dwm_master_pane_width=85
+    
+    "set master pane width to 66% of editor width
+    let g:dwm_master_pane_width="66%"
 <
 
 
