@@ -143,5 +143,4 @@ if g:dwm_map_keys
   " map <C-B> :call DWM_Ball()<CR>
   map <C-J> <C-W>w
   map <C-K> <C-W>W
-  map <C-B> :ls<CR>
 endif
