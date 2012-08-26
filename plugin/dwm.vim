@@ -75,7 +75,11 @@ endfunction
 
 
 function! DWM_Ball()
+  " when user open buffers with `:e file` command,
+  " the s:dwm_bufs will be [] until the following call to DWM_SyncBufs(),
   call DWM_SyncBufs()
+  " then we need to set focus to the RIGHT buffer using DWM_TopBuf()
+  call DWM_TopBuf(bufnr('%'))
   exec 'sb ' . s:dwm_bufs[len(s:dwm_bufs)-1]
   on!
   call DWM_SyncBufs()
@@ -116,7 +120,6 @@ function! DWM_New ()
   call DWM_Ball()
   vert topleft new
   call DWM_SyncBufs()
-  call DWM_TopBuf(bufnr('%'))
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
@@ -126,7 +129,7 @@ function! DWM_Close()
 endfunction
 
 function! DWM_Focus()
-  call DWM_TopBuf(bufnr('%'))
+  call DWM_Ball()
   call DWM_Layout()
 endfunction
 
