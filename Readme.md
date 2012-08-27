@@ -50,6 +50,10 @@ You can use `curl -so` if you prefer it over `wget`.
 - `g:dwm_map_keys`: if set to a falsey value, prevents key mapping.
 - `g:dwm_master_pane_width`: set the width of the master pane (e.g. `g:dwm_master_pane_width=85`)
 
+To use a mouse to select windows and resize panes:
+- `set mouse=a`: enable the use of the mouse in all modes
+- `set ttymouse=xterm2`: recognize mouse codes for the xterm2 terminal type
+
 ### Remarks
 
 There is only one tiled layout available right now, but do not hesitate to *fork it*!
