@@ -138,10 +138,10 @@ endif
 if g:dwm_map_keys
   map <C-N> :call DWM_New()<CR>
   map <C-C> :call DWM_Close()<CR>
-  map <C-H> :call DWM_Focus()<CR>
-  map <C-L> :call DWM_Full()<CR>
-  " map <C-B> :call DWM_Ball()<CR>
+  map <C-Space> :call DWM_Focus()<CR>
+  map <C-@> :call DWM_Focus()<CR>
+  " In preparation of mode system
+  map <C-M> :call DWM_Full()<CR>
   map <C-J> <C-W>w
   map <C-K> <C-W>W
-  map <C-B> :ls<CR>
 endif
