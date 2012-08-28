@@ -101,14 +101,14 @@ endfunction
 
 " Close the current window
 function! DWM_Close()
-  bd
-  " If the master panel is closed, only the stack remains and its witdh is equal
-  " to the width of the editor
-  if winwidth('%') == &columns
-    " Move the current window to the master panel
+  if winnr() == 1
+    " Close master panel.
+    bd
     wincmd H
     call DWM_ResizeMasterPaneWidth()
-  endif
+  else
+    bd
+  end
 endfunction
 
 function! DWM_ResizeMasterPaneWidth()
