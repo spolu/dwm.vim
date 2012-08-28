@@ -119,6 +119,22 @@ function! DWM_ResizeMasterPaneWidth()
   endif
 endfunction
 
+function! DWM_GrowMaster()
+  if winnr() == 1
+    exec "vertical resize +1"
+  else
+    exec "vertical resize -1"
+  endif
+endfunction
+
+function! DWM_ShrinkMaster()
+  if winnr() == 1
+    exec "vertical resize -1"
+  else
+    exec "vertical resize +1"
+  endif
+endfunction
+
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
 endif
@@ -128,6 +144,10 @@ if g:dwm_map_keys
   map <C-C> :call DWM_Close()<CR>
   map <C-Space> :call DWM_Focus()<CR>
   map <C-@> :call DWM_Focus()<CR>
+
+  map <C-H> :call DWM_GrowMaster()<CR>
+  map <C-L> :call DWM_ShrinkMaster()<CR>
+
   map <C-J> :call DWM_Rotate(1)<CR>
   map <C-K> :call DWM_Rotate(0)<CR>
 endif
