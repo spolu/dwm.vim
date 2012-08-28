@@ -128,11 +128,18 @@ function! DWM_Close()
   call DWM_Layout()
 endfunction
 
+function! DWM_CloseOthers()
+  for nr in range(1,bufnr("$"))
+    if nr != bufnr('%') && buflisted(nr)
+        exec 'bd ' . nr
+    endif
+  endfor
+endfunction
+
 function! DWM_Focus()
   call DWM_Ball()
   call DWM_Layout()
 endfunction
-
 
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
@@ -140,10 +147,9 @@ endif
 
 if g:dwm_map_keys
   map <C-N> :call DWM_New()<CR>
-  map <C-C> :call DWM_Close()<CR>
+  map <C-C> :call DWM_CloseOthers()<CR>
   map <C-H> :call DWM_Focus()<CR>
   map <C-L> :call DWM_Full()<CR>
-  " map <C-B> :call DWM_Ball()<CR>
   map <C-J> <C-W>w
   map <C-K> <C-W>W
 endif
