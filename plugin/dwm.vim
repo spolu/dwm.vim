@@ -44,8 +44,7 @@ endif
 
 " Move the current master pane to the stack
 function! DWM_Stack(clockwise)
-  " Select window on the left, this *should* be the master pane
-  wincmd h
+  1wincmd w
   if a:clockwise
     " Move to the top of the stack
     wincmd K
