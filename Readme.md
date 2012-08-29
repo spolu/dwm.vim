@@ -29,10 +29,30 @@ Use the following commands to create, browse and close windows:
 
 ![](http://i.imgur.com/TKL4i.png)
 
+### Installation
+
+Install to `~/.vim/plugin/dwm.vim`.
+
+Or copy and paste:
+
+```
+mkdir -p ~/.vim/plugin ~/.vim/doc; \
+wget -qO ~/.vim/plugin/dwm.vim \
+    https://raw.github.com/spolu/dwm.vim/master/plugin/dwm.vim; \
+wget -qO ~/.vim/doc/dwm.txt \
+    https://raw.github.com/spolu/dwm.vim/master/doc/dwm.txt;
+```
+
+You can use `curl -so` if you prefer it over `wget`.
+
 ### Optional Settings
 
 - `g:dwm_map_keys`: if set to a falsey value, prevents key mapping.
 - `g:dwm_master_pane_width`: set the width of the master pane (e.g. `g:dwm_master_pane_width=85`)
+
+To use a mouse to select windows and resize panes:
+- `set mouse=a`: enable the use of the mouse in all modes
+- `set ttymouse=xterm2`: recognize mouse codes for the xterm2 terminal type
 
 ### Remarks
 
