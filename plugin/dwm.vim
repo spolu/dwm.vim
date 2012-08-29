@@ -32,116 +32,101 @@ if v:version < 700
   finish
 endif
 
-" Script Array for storing Buffer order
-let s:dwm_bufs = []
+" All layout transformations assume the layout contains one master pane on the
+" left and an arbitrary number of stacked panes on the right
+" +--------+--------+
+" |        |   S1   |
+" |        +--------+
+" |   M    |   S3   |
+" |        +--------+
+" |        |   S3   |
+" +--------+--------+
 
-function! DWM_BufCount()
-  let cnt = 0
-  for nr in range(1,bufnr("$"))
-    if buflisted(nr)
-      let cnt += 1
-    endif
-  endfor
-  return cnt
+" Move the current master pane to the stack
+function! DWM_Stack()
+  1wincmd w
+  " Move to the top of the stack
+  wincmd K
+  " At this point, the layout *should* be the following with the previous master
+  " at the top.
+  " +-----------------+
+  " |        M        |
+  " +-----------------+
+  " |        S1       |
+  " +-----------------+
+  " |        S2       |
+  " +-----------------+
+  " |        S3       |
+  " +-----------------+
 endfunction
 
-function! DWM_SyncBufs()
-  for nr in range(1,bufnr('$'))
-    if buflisted(nr)
-      if index(s:dwm_bufs,nr) == -1
-        let s:dwm_bufs += [nr]
-      endif
-    endif
-  endfor
-  for r_idx in range(1,len(s:dwm_bufs))
-    let idx = len(s:dwm_bufs)-r_idx
-    if !(buflisted(s:dwm_bufs[idx]))
-      " echo idx
-      call remove(s:dwm_bufs,idx)
-    endif
-  endfor
-  " echo s:dwm_bufs
+" Add a new buffer
+function! DWM_New()
+  " Move current master pane to the stack
+  call DWM_Stack()
+  " Create a vertical split
+  vert topleft new
+  call DWM_ResizeMasterPaneWidth()
 endfunction
 
-function! DWM_TopBuf(buffer)
-  let b = a:buffer
-  let idx = index(s:dwm_bufs,b)
-  if idx != -1
-    call remove(s:dwm_bufs,idx)
-    call insert(s:dwm_bufs,b)
-  endif
-  " echo s:dwm_bufs
+" Move the current window to the master pane (the previous master window is
+" added to the top of the stack)
+function! DWM_Focus()
+  let l:curwin = winnr()
+  call DWM_Stack()
+  exec l:curwin . "wincmd w"
+  wincmd H
+  call DWM_ResizeMasterPaneWidth()
 endfunction
 
-
-function! DWM_Ball()
-  call DWM_SyncBufs()
-  exec 'sb ' . s:dwm_bufs[len(s:dwm_bufs)-1]
-  on!
-  call DWM_SyncBufs()
-  if len(s:dwm_bufs) > 1
-    for idx in range(1,len(s:dwm_bufs)-1)
-      let r_idx = (len(s:dwm_bufs)-1) - idx
-      exec 'topleft sb ' . s:dwm_bufs[r_idx]
-    endfor
-  endif
-endfunction
-
-function! DWM_Layout()
-  call DWM_Ball()
-  if DWM_BufCount() > 1
-    " we just called ball we are at the top buffer
-    let cb = s:dwm_bufs[0]
-    hide
-    exec 'vert topleft sb ' . cb
+" Close the current window
+function! DWM_Close()
+  if winnr() == 1
+    " Close master panel.
+    bd
+    wincmd H
     call DWM_ResizeMasterPaneWidth()
-  endif
+  else
+    bd
+  end
 endfunction
 
-
-function DWM_ResizeMasterPaneWidth()
+function! DWM_ResizeMasterPaneWidth()
   " resize the master pane if user defined it
   if exists('g:dwm_master_pane_width')
     exec 'vertical resize ' . g:dwm_master_pane_width
   endif
 endfunction
 
-
-function! DWM_Full ()
-  exec 'sb ' .  bufnr('%')
-  on!
+function! DWM_GrowMaster()
+  if winnr() == 1
+    exec "vertical resize +1"
+  else
+    exec "vertical resize -1"
+  endif
 endfunction
 
-function! DWM_New ()
-  call DWM_Ball()
-  vert topleft new
-  call DWM_SyncBufs()
-  call DWM_TopBuf(bufnr('%'))
-  call DWM_ResizeMasterPaneWidth()
+function! DWM_ShrinkMaster()
+  if winnr() == 1
+    exec "vertical resize -1"
+  else
+    exec "vertical resize +1"
+  endif
 endfunction
-
-function! DWM_Close()
-  bd
-  call DWM_Layout()
-endfunction
-
-function! DWM_Focus()
-  call DWM_TopBuf(bufnr('%'))
-  call DWM_Layout()
-endfunction
-
 
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
 endif
 
 if g:dwm_map_keys
+  map <C-J> <C-W>w
+  map <C-K> <C-W>W
+
   map <C-N> :call DWM_New()<CR>
   map <C-C> :call DWM_Close()<CR>
   map <C-Space> :call DWM_Focus()<CR>
   map <C-@> :call DWM_Focus()<CR>
-  " In preparation of mode system
-  map <C-M> :call DWM_Full()<CR>
-  map <C-J> <C-W>w
-  map <C-K> <C-W>W
+
+  map <C-H> :call DWM_GrowMaster()<CR>
+  map <C-L> :call DWM_ShrinkMaster()<CR>
 endif
