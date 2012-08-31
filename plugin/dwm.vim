@@ -134,6 +134,17 @@ function! DWM_Focus()
   call DWM_Layout()
 endfunction
 
+function! DWM_Update ()
+  call DWM_SyncBufs()
+  call DWM_TopBuf(bufnr('%'))
+  call DWM_Ball()
+  if DWM_BufCount() > 1
+    hide
+    exec 'vert topleft sb ' . s:dwm_bufs[0]
+  endif
+endfunction
+
+autocmd BufNewFile,BufRead * :call DWM_Update()
 
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
