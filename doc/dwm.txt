@@ -79,8 +79,8 @@ mapped:
 
   <c-n>     |:DWM_New|
   <c-c>     |:DWM_Close|
-  <c-h>     |:DWM_Focus|
-  <c-l>     |:DWM_Full|
+  <c-space> |:DWM_Focus|
+  <c-m>     |:DWM_Full|
   <c-j>     Move cursor clockwise to the next window
   <c-k>     Move cursor counter-clockwise to the previous window
 
