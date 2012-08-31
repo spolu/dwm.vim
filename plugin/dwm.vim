@@ -43,10 +43,15 @@ endif
 " +--------+--------+
 
 " Move the current master pane to the stack
-function! DWM_Stack()
-  1wincmd h
-  " Move to the top of the stack
-  wincmd K
+function! DWM_Stack(clockwise)
+  1wincmd w
+  if a:clockwise
+    " Move to the top of the stack
+    wincmd K
+  else
+    " Move to the bottom of the stack
+    wincmd J
+  endif
   " At this point, the layout *should* be the following with the previous master
   " at the top.
   " +-----------------+
@@ -63,7 +68,7 @@ endfunction
 " Add a new buffer
 function! DWM_New()
   " Move current master pane to the stack
-  call DWM_Stack()
+  call DWM_Stack(1)
   " Create a vertical split
   vert topleft new
   call DWM_ResizeMasterPaneWidth()
@@ -73,7 +78,7 @@ endfunction
 " added to the top of the stack)
 function! DWM_Focus()
   let l:curwin = winnr()
-  call DWM_Stack()
+  call DWM_Stack(1)
   exec l:curwin . "wincmd w"
   wincmd H
   call DWM_ResizeMasterPaneWidth()
@@ -118,6 +123,17 @@ function! DWM_ShrinkMaster()
   endif
 endfunction
 
+function! DWM_Rotate(clockwise)
+  call DWM_Stack(a:clockwise)
+  if a:clockwise
+    wincmd W
+  else
+    wincmd w
+  endif
+  wincmd H
+  call DWM_ResizeMasterPaneWidth()
+endfunction
+
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
 endif
@@ -125,6 +141,8 @@ endif
 if g:dwm_map_keys
   map <C-J> <C-W>w
   map <C-K> <C-W>W
+  map <C-,> :call DWM_Rotate(0)<CR>
+  map <C-.> :call DWM_Rotate(1)<CR>
 
   map <C-N> :call DWM_New()<CR>
   map <C-C> :call DWM_Close()<CR>
