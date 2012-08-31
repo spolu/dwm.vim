@@ -94,7 +94,11 @@ endfunction
 function! DWM_ResizeMasterPaneWidth()
   " resize the master pane if user defined it
   if exists('g:dwm_master_pane_width')
-    exec 'vertical resize ' . g:dwm_master_pane_width
+    if type(g:dwm_master_pane_width) == type("")
+      exec 'vertical resize ' . ((str2nr(g:dwm_master_pane_width)*&columns)/100)
+    else
+      exec 'vertical resize ' . g:dwm_master_pane_width
+    endif
   endif
 endfunction
 
