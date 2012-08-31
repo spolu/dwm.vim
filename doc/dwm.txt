@@ -106,8 +106,9 @@ Set the width of the master pane.
 ==============================================================================
 CHANGELOG                                                      *dwm-changelog*
 
-x.y.z
-    - Foo
+0.1.1
+    - Huge refactoring to use only window motions
+    - Added Grow/Shrink master pane
 
 ==============================================================================
 CREDITS                                                          *dwm-credits*
@@ -123,6 +124,8 @@ Contributors in alphabetical order
     mitnk (mitnk)
     Tony Narlock (tony)
     rhacker (rhacker)
+    Larry Marburger (lmarburger)
+    Adrien (afriggeri)
 
 
 ==============================================================================
