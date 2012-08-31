@@ -83,6 +83,8 @@ mapped:
   <c-m>     |:DWM_Full|
   <c-j>     Move cursor clockwise to the next window
   <c-k>     Move cursor counter-clockwise to the previous window
+  <c-h>     Grow Master Pane Width
+  <c-l>     Shrink Master Pane Width
 
 
 ==============================================================================
