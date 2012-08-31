@@ -1,5 +1,5 @@
 "==============================================================================
-"    Copyright: Copyright (C) 2012 Stanislas Polu
+"    Copyright: Copyright (C) 2012 Stanislas Polu an other Contributors
 "               Permission is hereby granted to use and distribute this code,
 "               with or without modifications, provided that this copyright
 "               notice is copied with it. Like anything else that's free,
@@ -44,7 +44,7 @@ endif
 
 " Move the current master pane to the stack
 function! DWM_Stack()
-  1wincmd w
+  1wincmd h
   " Move to the top of the stack
   wincmd K
   " At this point, the layout *should* be the following with the previous master
