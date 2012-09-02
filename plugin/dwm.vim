@@ -139,16 +139,16 @@ if !exists('g:dwm_map_keys')
 endif
 
 if g:dwm_map_keys
-  map <C-J> <C-W>w
-  map <C-K> <C-W>W
-  map <C-,> :call DWM_Rotate(0)<CR>
-  map <C-.> :call DWM_Rotate(1)<CR>
+  map <silent> <C-J> <C-W>w
+  map <silent> <C-K> <C-W>W
+  map <silent> <C-,> :call DWM_Rotate(0)<CR>
+  map <silent> <C-.> :call DWM_Rotate(1)<CR>
 
-  map <C-N> :call DWM_New()<CR>
-  map <C-C> :call DWM_Close()<CR>
-  map <C-Space> :call DWM_Focus()<CR>
-  map <C-@> :call DWM_Focus()<CR>
+  map <silent> <C-N> :call DWM_New()<CR>
+  map <silent> <C-C> :call DWM_Close()<CR>
+  map <silent> <C-Space> :call DWM_Focus()<CR>
+  map <silent> <C-@> :call DWM_Focus()<CR>
 
-  map <C-H> :call DWM_GrowMaster()<CR>
-  map <C-L> :call DWM_ShrinkMaster()<CR>
+  map <silent> <C-H> :call DWM_GrowMaster()<CR>
+  map <silent> <C-L> :call DWM_ShrinkMaster()<CR>
 endif
