@@ -88,11 +88,11 @@ endfunction
 function! DWM_Close()
   if winnr() == 1
     " Close master panel.
-    bd
+    close
     wincmd H
     call DWM_ResizeMasterPaneWidth()
   else
-    bd
+    close
   end
 endfunction
 
