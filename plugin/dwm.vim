@@ -149,6 +149,6 @@ if g:dwm_map_keys
   nnoremap <silent> <C-Space> :call DWM_Focus()<CR>
   nnoremap <silent> <C-@> :call DWM_Focus()<CR>
 
-  nnoremap <silent> <C-H> :call DWM_GrowMaster()<CR>
-  nnoremap <silent> <C-L> :call DWM_ShrinkMaster()<CR>
+  nnoremap <silent> <C-L> :call DWM_GrowMaster()<CR>
+  nnoremap <silent> <C-H> :call DWM_ShrinkMaster()<CR>
 endif
