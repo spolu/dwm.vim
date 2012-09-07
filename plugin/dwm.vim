@@ -88,11 +88,9 @@ endfunction
 function! DWM_Close()
   if winnr() == 1
     " Close master panel.
-    close
-    wincmd H
-    call DWM_ResizeMasterPaneWidth()
+    return 'close | wincmd H | call DWM_ResizeMasterPaneWidth()'
   else
-    close
+    return 'close'
   end
 endfunction
 
@@ -145,7 +143,7 @@ if g:dwm_map_keys
   nnoremap <silent> <C-.> :call DWM_Rotate(1)<CR>
 
   nnoremap <silent> <C-N> :call DWM_New()<CR>
-  nnoremap <silent> <C-C> :call DWM_Close()<CR>
+  nnoremap <silent> <C-C> :exec DWM_Close()<CR>
   nnoremap <silent> <C-Space> :call DWM_Focus()<CR>
   nnoremap <silent> <C-@> :call DWM_Focus()<CR>
 
