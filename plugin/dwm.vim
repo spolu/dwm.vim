@@ -132,21 +132,32 @@ function! DWM_Rotate(clockwise)
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
+nnoremap <silent> <Plug>DWMRotateCounterclockwise :call DWM_Rotate(0)<CR>
+nnoremap <silent> <Plug>DWMRotateClockwise        :call DWM_Rotate(1)<CR>
+
+nnoremap <silent> <Plug>DWMNew   :call DWM_New()<CR>
+nnoremap <silent> <Plug>DWMClose :exec DWM_Close()<CR>
+nnoremap <silent> <Plug>DWMFocus :call DWM_Focus()<CR>
+
+nnoremap <silent> <Plug>DWMGrowMaster   :call DWM_GrowMaster()<CR>
+nnoremap <silent> <Plug>DWMShrinkMaster :call DWM_ShrinkMaster()<CR>
+
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
 endif
 
 if g:dwm_map_keys
-  nnoremap <silent> <C-J> <C-W>w
-  nnoremap <silent> <C-K> <C-W>W
-  nnoremap <silent> <C-,> :call DWM_Rotate(0)<CR>
-  nnoremap <silent> <C-.> :call DWM_Rotate(1)<CR>
+  nnoremap <C-J> <C-W>w
+  nnoremap <C-K> <C-W>W
 
-  nnoremap <silent> <C-N> :call DWM_New()<CR>
-  nnoremap <silent> <C-C> :exec DWM_Close()<CR>
-  nnoremap <silent> <C-Space> :call DWM_Focus()<CR>
-  nnoremap <silent> <C-@> :call DWM_Focus()<CR>
+  nmap <C-,> <Plug>DWMRotateCounterclockwise
+  nmap <C-.> <Plug>DWMRotateClockwise
 
-  nnoremap <silent> <C-L> :call DWM_GrowMaster()<CR>
-  nnoremap <silent> <C-H> :call DWM_ShrinkMaster()<CR>
+  nmap <C-N> <Plug>DWMNew
+  nmap <C-C> <Plug>DWMClose
+  nmap <C-@> <Plug>DWMFocus
+  nmap <C-Space> <Plug>DWMFocus
+
+  nmap <C-L> <Plug>DWMGrowMaster
+  nmap <C-H> <Plug>DWMShrinkMaster
 endif
