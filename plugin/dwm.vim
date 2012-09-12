@@ -65,12 +65,42 @@ function! DWM_Stack(clockwise)
   " +-----------------+
 endfunction
 
+" Cleans up the window layout
+function! DWM_Fix()
+    wincmd H
+    let l:w = 1
+    " stack all windows
+    while (l:w <= winnr("$"))
+        1wincmd w
+        wincmd J
+        let l:w += 1
+    endwhile
+    1wincmd w
+    wincmd H
+    " resize according to user preference
+    call DWM_ResizeMasterPaneWidth()
+endfunction
+
+" Split the current window, and put the new split on the stack
+function! DWM_Split()
+    let wnr = winnr()
+    call DWM_Stack(1)
+    sb
+    wincmd j
+    let w:dwm = 1
+    wincmd k
+    1wincmd w
+    wincmd H
+    exe wnr.'wincmd w'
+endfunction
+
 " Add a new buffer
 function! DWM_New()
   " Move current master pane to the stack
   call DWM_Stack(1)
   " Create a vertical split
   vert topleft new
+  let w:dwm = 1
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
@@ -86,6 +116,9 @@ endfunction
 
 " Close the current window
 function! DWM_Close()
+  if exists('w:dwm')
+      unlet w:dwm
+  endif
   if winnr() == 1
     " Close master panel.
     return 'close | wincmd H | call DWM_ResizeMasterPaneWidth()'
@@ -132,6 +165,15 @@ function! DWM_Rotate(clockwise)
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
+if !exists('g:dwm_auto_arrange')
+    let g:dwm_auto_arrange = 1
+endif
+
+if g:dwm_auto_arrange
+    au BufWinLeave * if exists("w:dwm")  | silent call DWM_Fix() | endif
+    au FileType qf wincmd J
+endif
+
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
 endif
@@ -150,3 +192,4 @@ if g:dwm_map_keys
   nnoremap <silent> <C-L> :call DWM_GrowMaster()<CR>
   nnoremap <silent> <C-H> :call DWM_ShrinkMaster()<CR>
 endif
+
