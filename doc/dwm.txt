@@ -85,8 +85,8 @@ mapped:
   <c-k>     Move cursor counter-clockwise to the previous window
   <c-,>     Rotate windows counter-clockwise
   <c-.>     Rotate windows clockwise
-  <c-h>     Grow Master Pane Width
-  <c-l>     Shrink Master Pane Width
+  <c-h>     Shrink Master Pane Width
+  <c-l>     Grow Master Pane Width
 
 
 ==============================================================================
