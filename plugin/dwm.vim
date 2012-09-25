@@ -26,6 +26,8 @@ endif
 
 let g:dwm_version = "0.1.1"
 
+let s:current_width = 0
+
 " Check for Vim version 700 or greater {{{1
 if v:version < 700
   echo "Sorry, dwm.vim ".g:dwm_version."\nONLY runs with Vim 7.0 and greater."
@@ -96,12 +98,22 @@ endfunction
 
 function! DWM_ResizeMasterPaneWidth()
   " resize the master pane if user defined it
-  if exists('g:dwm_master_pane_width')
-    if type(g:dwm_master_pane_width) == type("")
-      exec 'vertical resize ' . ((str2nr(g:dwm_master_pane_width)*&columns)/100)
+  " but preserve current width if it was changed
+  " during the session
+  if s:current_width
+    let l:width = s:current_width
+  else
+    if exists('g:dwm_master_pane_width')
+      let l:width = g:dwm_master_pane_width
     else
-      exec 'vertical resize ' . g:dwm_master_pane_width
+      return
     endif
+  endif
+
+  if type(l:width) == type("")
+    exec 'vertical resize ' . ((str2nr(l:width)*&columns)/100)
+  else
+    exec 'vertical resize ' . l:width
   endif
 endfunction
 
@@ -111,6 +123,7 @@ function! DWM_GrowMaster()
   else
     exec "vertical resize -1"
   endif
+  let s:current_width = winwidth(1)
 endfunction
 
 function! DWM_ShrinkMaster()
@@ -119,6 +132,7 @@ function! DWM_ShrinkMaster()
   else
     exec "vertical resize +1"
   endif
+  let s:current_width = winwidth(1)
 endfunction
 
 function! DWM_Rotate(clockwise)
@@ -132,6 +146,15 @@ function! DWM_Rotate(clockwise)
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
+function! DWM_RestoreWidth()
+  let s:current_width = 0
+
+  if !exists('g:dwm_master_pane_width')
+    let g:dwm_master_pane_width = "50%"
+  endif
+  call DWM_ResizeMasterPaneWidth()
+endfunction
+
 nnoremap <silent> <Plug>DWMRotateCounterclockwise :call DWM_Rotate(0)<CR>
 nnoremap <silent> <Plug>DWMRotateClockwise        :call DWM_Rotate(1)<CR>
 
@@ -141,6 +164,8 @@ nnoremap <silent> <Plug>DWMFocus :call DWM_Focus()<CR>
 
 nnoremap <silent> <Plug>DWMGrowMaster   :call DWM_GrowMaster()<CR>
 nnoremap <silent> <Plug>DWMShrinkMaster :call DWM_ShrinkMaster()<CR>
+
+nnoremap <silent> <Plug>DWMRestoreWidth :call DWM_RestoreWidth()<CR>
 
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
@@ -160,4 +185,6 @@ if g:dwm_map_keys
 
   nmap <C-L> <Plug>DWMGrowMaster
   nmap <C-H> <Plug>DWMShrinkMaster
+
+  nmap <C-P> <Plug>DWMRestoreWidth
 endif
