@@ -146,6 +146,15 @@ function! DWM_Rotate(clockwise)
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
+function! DWM_RestoreWidth()
+  let s:current_width = 0
+
+  if !exists('g:dwm_master_pane_width')
+    let g:dwm_master_pane_width = "50%"
+  endif
+  call DWM_ResizeMasterPaneWidth()
+endfunction
+
 nnoremap <silent> <Plug>DWMRotateCounterclockwise :call DWM_Rotate(0)<CR>
 nnoremap <silent> <Plug>DWMRotateClockwise        :call DWM_Rotate(1)<CR>
 
@@ -155,6 +164,8 @@ nnoremap <silent> <Plug>DWMFocus :call DWM_Focus()<CR>
 
 nnoremap <silent> <Plug>DWMGrowMaster   :call DWM_GrowMaster()<CR>
 nnoremap <silent> <Plug>DWMShrinkMaster :call DWM_ShrinkMaster()<CR>
+
+nnoremap <silent> <Plug>DWMRestoreWidth :call DWM_RestoreWidth()<CR>
 
 if !exists('g:dwm_map_keys')
   let g:dwm_map_keys = 1
@@ -174,4 +185,6 @@ if g:dwm_map_keys
 
   nmap <C-L> <Plug>DWMGrowMaster
   nmap <C-H> <Plug>DWMShrinkMaster
+
+  nmap <C-P> <Plug>DWMRestoreWidth
 endif

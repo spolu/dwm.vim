@@ -87,6 +87,7 @@ mapped:
   <c-.>     Rotate windows clockwise
   <c-h>     Shrink Master Pane Width
   <c-l>     Grow Master Pane Width
+  <c-p>     Restore default master pane width
 
 
 ==============================================================================
