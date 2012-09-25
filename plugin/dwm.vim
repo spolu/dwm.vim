@@ -26,6 +26,8 @@ endif
 
 let g:dwm_version = "0.1.1"
 
+let s:current_width = 0
+
 " Check for Vim version 700 or greater {{{1
 if v:version < 700
   echo "Sorry, dwm.vim ".g:dwm_version."\nONLY runs with Vim 7.0 and greater."
@@ -96,12 +98,22 @@ endfunction
 
 function! DWM_ResizeMasterPaneWidth()
   " resize the master pane if user defined it
-  if exists('g:dwm_master_pane_width')
-    if type(g:dwm_master_pane_width) == type("")
-      exec 'vertical resize ' . ((str2nr(g:dwm_master_pane_width)*&columns)/100)
+  " but preserve current width if it was changed
+  " during the session
+  if s:current_width
+    let l:width = s:current_width
+  else
+    if exists('g:dwm_master_pane_width')
+      let l:width = g:dwm_master_pane_width
     else
-      exec 'vertical resize ' . g:dwm_master_pane_width
+      return
     endif
+  endif
+
+  if type(l:width) == type("")
+    exec 'vertical resize ' . ((str2nr(l:width)*&columns)/100)
+  else
+    exec 'vertical resize ' . l:width
   endif
 endfunction
 
@@ -111,6 +123,7 @@ function! DWM_GrowMaster()
   else
     exec "vertical resize -1"
   endif
+  let s:current_width = winwidth(1)
 endfunction
 
 function! DWM_ShrinkMaster()
@@ -119,6 +132,7 @@ function! DWM_ShrinkMaster()
   else
     exec "vertical resize +1"
   endif
+  let s:current_width = winwidth(1)
 endfunction
 
 function! DWM_Rotate(clockwise)
