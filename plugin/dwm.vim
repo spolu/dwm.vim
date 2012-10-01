@@ -111,6 +111,11 @@ function! DWM_GrowMaster()
   else
     exec "vertical resize -1"
   endif
+  if exists("g:dwm_master_pane_width") && g:dwm_master_pane_width
+    let g:dwm_master_pane_width += 1
+  else
+    let g:dwm_master_pane_width = ((&columns)/2)+1
+  endif
 endfunction
 
 function! DWM_ShrinkMaster()
@@ -118,6 +123,11 @@ function! DWM_ShrinkMaster()
     exec "vertical resize -1"
   else
     exec "vertical resize +1"
+  endif
+  if exists("g:dwm_master_pane_width") && g:dwm_master_pane_width
+    let g:dwm_master_pane_width -= 1
+  else
+    let g:dwm_master_pane_width = ((&columns)/2)-1
   endif
 endfunction
 
