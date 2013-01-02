@@ -160,14 +160,28 @@ if g:dwm_map_keys
   nnoremap <C-J> <C-W>w
   nnoremap <C-K> <C-W>W
 
-  nmap <C-,> <Plug>DWMRotateCounterclockwise
-  nmap <C-.> <Plug>DWMRotateClockwise
+  if !hasmapto('<Plug>DWMRotateCounterclockwise')
+      nmap <C-,> <Plug>DWMRotateCounterclockwise
+  endif
+  if !hasmapto('<Plug>DWMRotateClockwise')
+      nmap <C-.> <Plug>DWMRotateClockwise
+  endif
 
-  nmap <C-N> <Plug>DWMNew
-  nmap <C-C> <Plug>DWMClose
-  nmap <C-@> <Plug>DWMFocus
-  nmap <C-Space> <Plug>DWMFocus
+  if !hasmapto('<Plug>DWMNew')
+      nmap <C-N> <Plug>DWMNew
+  endif
+  if !hasmapto('<Plug>DWMClose')
+      nmap <C-C> <Plug>DWMClose
+  endif
+  if !hasmapto('<Plug>DWMFocus')
+      nmap <C-@> <Plug>DWMFocus
+      nmap <C-Space> <Plug>DWMFocus
+  endif
 
-  nmap <C-L> <Plug>DWMGrowMaster
-  nmap <C-H> <Plug>DWMShrinkMaster
+  if !hasmapto('<Plug>DWMGrowMaster')
+      nmap <C-L> <Plug>DWMGrowMaster
+  endif
+  if !hasmapto('<Plug>DWMShrinkMaster')
+      nmap <C-H> <Plug>DWMShrinkMaster
+  endif
 endif
