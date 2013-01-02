@@ -115,6 +115,8 @@ will be set to a relative percentage of the editor's width.
 ==============================================================================
 CHANGELOG                                                      *dwm-changelog*
 
+0.1.2
+    - use of `hasmapto`
 0.1.1
     - Huge refactoring to use only window motions
     - Added Grow/Shrink master pane

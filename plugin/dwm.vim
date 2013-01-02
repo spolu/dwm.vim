@@ -24,7 +24,7 @@ if exists("g:dwm_version") || &cp
   finish
 endif
 
-let g:dwm_version = "0.1.1"
+let g:dwm_version = "0.1.2"
 
 " Check for Vim version 700 or greater {{{1
 if v:version < 700
