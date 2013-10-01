@@ -75,8 +75,17 @@ function! DWM_New()
 endfunction
 
 " Move the current window to the master pane (the previous master window is
-" added to the top of the stack)
+" added to the top of the stack). If current window is master already - switch
+" back to previous
 function! DWM_Focus()
+  if winnr('$') == 1
+    return
+  endif
+
+  if winnr() == 1
+    wincmd p
+  endif
+
   let l:curwin = winnr()
   call DWM_Stack(1)
   exec l:curwin . "wincmd w"
