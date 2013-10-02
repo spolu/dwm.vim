@@ -80,5 +80,6 @@ related to `dwm.vim`:
 @tony (Tony Narlock)
 @lmarburger (Larry Marburger)
 @afriggeri (Adrien)
+@n4kz (Alexander Nazarov)
 ```
 
