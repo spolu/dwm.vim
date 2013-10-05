@@ -93,6 +93,41 @@ function! DWM_Focus()
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
+" Handler for BufWinEnter autocommand
+" Recreate layout broken by new window
+function! DWM_AutoEnter()
+  let i = 1
+  let j = winnr('$')
+
+  if j < 2
+    return
+  endif
+
+  " Recreate stack
+  while i <= j
+    let i += 1
+    exec j. 'wincmd w'
+    wincmd K
+  endwhile
+
+  " Put master on its place
+  wincmd H
+  call DWM_ResizeMasterPaneWidth()
+endfunction
+
+" Handler for BufWinLeave autocommand
+" Fix layout broken by closed master window
+function! DWM_AutoLeave()
+  " FIXME: Netrw magic hides another buffer when file is opened.
+  " Possible solution - call unhide in DWM_AutoEnter
+  if winnr() == 1 && &l:ft != 'netrw'
+    wincmd K
+    wincmd x
+    wincmd H
+    call DWM_ResizeMasterPaneWidth()
+  endif
+endfunction
+
 " Close the current window
 function! DWM_Close()
   if winnr() == 1
@@ -193,4 +228,12 @@ if g:dwm_map_keys
   if !hasmapto('<Plug>DWMShrinkMaster')
       nmap <C-H> <Plug>DWMShrinkMaster
   endif
+endif
+
+if has('autocmd')
+  augroup dwm
+    au!
+    au BufWinEnter * call DWM_AutoEnter()
+    au BufWinLeave * call DWM_AutoLeave()
+  augroup end
 endif
