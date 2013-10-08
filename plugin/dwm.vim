@@ -96,23 +96,16 @@ endfunction
 " Handler for BufWinEnter autocommand
 " Recreate layout broken by new window
 function! DWM_AutoEnter()
-  let i = 1
-  let j = winnr('$')
-
-  if j < 2
+  if winnr('$') == 1
     return
   endif
 
-  " Recreate stack
-  while i < j
-    let i += 1
-    exec j. 'wincmd w'
-    wincmd K
-  endwhile
+  " Move new window to stack top
+  wincmd K
 
-  " Put master on its place
-  wincmd H
-  call DWM_ResizeMasterPaneWidth()
+  " Focus new window (twice :)
+  call DWM_Focus()
+  call DWM_Focus()
 endfunction
 
 " Handler for BufWinLeave autocommand
