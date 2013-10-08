@@ -236,6 +236,6 @@ if has('autocmd')
   augroup dwm
     au!
     au BufWinEnter * if &l:ft !~ '\v^(netrw|help)$' | call DWM_AutoEnter() | endif
-    au BufWinEnter * if &l:ft !~ '\v^(netrw|help)$' | call DWM_AutoLeave() | endif
+    au BufWinLeave * if &l:ft !~ '\v^(netrw|help)$' | call DWM_AutoLeave() | endif
   augroup end
 endif
