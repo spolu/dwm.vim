@@ -104,7 +104,7 @@ function! DWM_AutoEnter()
   endif
 
   " Recreate stack
-  while i <= j
+  while i < j
     let i += 1
     exec j. 'wincmd w'
     wincmd K
@@ -118,9 +118,11 @@ endfunction
 " Handler for BufWinLeave autocommand
 " Fix layout broken by closed master window
 function! DWM_AutoLeave()
-  " FIXME: Netrw magic hides another buffer when file is opened.
-  " Possible solution - call unhide in DWM_AutoEnter
-  if winnr() == 1 && &l:ft != 'netrw'
+  if winnr('$') < 2
+    return
+  endif
+
+  if winnr() == 1
     wincmd K
     wincmd x
     wincmd H
@@ -233,7 +235,7 @@ endif
 if has('autocmd')
   augroup dwm
     au!
-    au BufWinEnter * call DWM_AutoEnter()
-    au BufWinLeave * call DWM_AutoLeave()
+    au BufWinEnter * if &l:ft !~ '\v^(netrw|help)$' | call DWM_AutoEnter() | endif
+    au BufWinEnter * if &l:ft !~ '\v^(netrw|help)$' | call DWM_AutoLeave() | endif
   augroup end
 endif
