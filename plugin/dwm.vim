@@ -115,7 +115,11 @@ function! DWM_AutoLeave()
     return
   endif
 
-  if winnr() == 1
+  " To prevent vim crashes filetype is checked
+  " before any actual layout changes. So layout
+  " is updated only for regular buffers. Probably
+  " other buffer properties should be also checked.
+  if winnr() == 1 && strlen(&l:filetype)
     wincmd K
     wincmd x
     wincmd H
@@ -125,7 +129,8 @@ endfunction
 
 " Close the current window
 function! DWM_Close()
-  if winnr() == 1
+  " For buffers with filetype set layout will be changed by DWM_AutoLeave()
+  if winnr() == 1 && (!strlen(&l:filetype) || &l:filetype =~ '\v^(netrw|help)$')
     " Close master panel.
     return 'close | wincmd H | call DWM_ResizeMasterPaneWidth()'
   else
@@ -134,6 +139,9 @@ function! DWM_Close()
 endfunction
 
 function! DWM_ResizeMasterPaneWidth()
+  " Make all windows equally high and wide
+  wincmd =
+
   " resize the master pane if user defined it
   if exists('g:dwm_master_pane_width')
     if type(g:dwm_master_pane_width) == type("")
@@ -228,7 +236,7 @@ endif
 if has('autocmd')
   augroup dwm
     au!
-    au BufWinEnter * if &l:ft !~ '\v^(netrw|help)$' | call DWM_AutoEnter() | endif
-    au BufWinLeave * if &l:ft !~ '\v^(netrw|help)$' | call DWM_AutoLeave() | endif
+    au BufWinEnter * if &l:filetype !~ '\v^(netrw|help)$' | call DWM_AutoEnter() | endif
+    au BufWinLeave * if &l:filetype !~ '\v^(netrw|help)$' | call DWM_AutoLeave() | endif
   augroup end
 endif
