@@ -236,11 +236,7 @@ endif
 if has('autocmd')
   augroup dwm
     au!
-
-    au BufWinEnter * if &l:filetype !~ '\v^(netrw|help)$' |
-      \ call feedkeys("\<C-\>\<C-n>:silent call DWM_AutoEnter()\<CR>", 'n') |
-    \ endif
-
+    au BufWinEnter * if &l:filetype !~ '\v^(netrw|help)$' | call DWM_AutoEnter() | endif
     au BufWinLeave * if &l:filetype !~ '\v^(netrw|help)$' | call DWM_AutoLeave() | endif
   augroup end
 endif
