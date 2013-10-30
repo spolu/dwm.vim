@@ -108,29 +108,9 @@ function! DWM_AutoEnter()
   call DWM_Focus()
 endfunction
 
-" Handler for BufWinLeave autocommand
-" Fix layout broken by closed master window
-function! DWM_AutoLeave()
-  if winnr('$') < 2
-    return
-  endif
-
-  " To prevent vim crashes filetype is checked
-  " before any actual layout changes. So layout
-  " is updated only for regular buffers. Probably
-  " other buffer properties should be also checked.
-  if winnr() == 1 && strlen(&l:filetype)
-    wincmd K
-    wincmd x
-    wincmd H
-    call DWM_ResizeMasterPaneWidth()
-  endif
-endfunction
-
 " Close the current window
 function! DWM_Close()
-  " For buffers with filetype set layout will be changed by DWM_AutoLeave()
-  if winnr() == 1 && (!strlen(&l:filetype) || &l:filetype =~ '\v^(netrw|help)$')
+  if winnr() == 1
     " Close master panel.
     return 'close | wincmd H | call DWM_ResizeMasterPaneWidth()'
   else
@@ -237,6 +217,5 @@ if has('autocmd')
   augroup dwm
     au!
     au BufWinEnter * if &l:filetype !~ '\v^(netrw|help)$' | call DWM_AutoEnter() | endif
-    au BufWinLeave * if &l:filetype !~ '\v^(netrw|help)$' | call DWM_AutoLeave() | endif
   augroup end
 endif
