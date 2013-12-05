@@ -93,6 +93,21 @@ function! DWM_Focus()
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
+" Handler for BufWinEnter autocommand
+" Recreate layout broken by new window
+function! DWM_AutoEnter()
+  if winnr('$') == 1
+    return
+  endif
+
+  " Move new window to stack top
+  wincmd K
+
+  " Focus new window (twice :)
+  call DWM_Focus()
+  call DWM_Focus()
+endfunction
+
 " Close the current window
 function! DWM_Close()
   if winnr() == 1
@@ -104,6 +119,9 @@ function! DWM_Close()
 endfunction
 
 function! DWM_ResizeMasterPaneWidth()
+  " Make all windows equally high and wide
+  wincmd =
+
   " resize the master pane if user defined it
   if exists('g:dwm_master_pane_width')
     if type(g:dwm_master_pane_width) == type("")
@@ -193,4 +211,11 @@ if g:dwm_map_keys
   if !hasmapto('<Plug>DWMShrinkMaster')
       nmap <C-H> <Plug>DWMShrinkMaster
   endif
+endif
+
+if has('autocmd')
+  augroup dwm
+    au!
+    au BufWinEnter * if &l:filetype !~ '\v^(netrw|help)$' | call DWM_AutoEnter() | endif
+  augroup end
 endif
