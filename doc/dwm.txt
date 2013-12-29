@@ -35,8 +35,7 @@ master pane on the left and a stacked pane on the right side:
 new empty buffer. The previous master window is pushed on top of the stacked
 pane. |:DWM_Closes| closes any window as long as no unsaved changes are
 pending and updates the layout. An active, stacked window is focused and moved
-to the master pane with |:DWM_Focus|. Any window can occupy the full screen
-with |:DWM_Full| and return from that state with |:DWM_Focus|.
+to the master pane with |:DWM_Focus|.
 
 Official releases can be found on vim.org:
 
@@ -65,12 +64,6 @@ Closes the active window if no unsaved changes are pending.
 Focus the active window by placing it in the master pane.
 
 
-:DWM_Full                                                          *:DWM_Full*
-
-Make the active window full screen. Use |'DWM_Focus'| to return to normal
-mode.
-
-
 ==============================================================================
 MAPPINGS                                                        *dwm-mappings*
 
@@ -80,7 +73,6 @@ mapped:
   <c-n>     |:DWM_New|
   <c-c>     |:DWM_Close|
   <c-space> |:DWM_Focus|
-  <c-m>     |:DWM_Full|
   <c-j>     Move cursor clockwise to the next window
   <c-k>     Move cursor counter-clockwise to the previous window
   <c-,>     Rotate windows counter-clockwise

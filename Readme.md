@@ -23,7 +23,6 @@ Use the following commands to create, browse and close windows:
 - `C-J` Jumps to next window (clockwise) 
 - `C-K` Jumps to previous window (anti-clockwise) 
 - `C-Space` Focus the current window, that is, place it in the master pane [M] & stacks all other windows in the stacked pane [S]
-- `C-M` Fullscreen mode for the current window (use focus to return to normal mode)
 
 ### ScreenShot
 
