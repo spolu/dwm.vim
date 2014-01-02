@@ -20,7 +20,7 @@
 "==============================================================================
 
 " Exit quickly if already running
-if exists("g:dwm_version") || &cp
+if exists("g:dwm_version") || &diff || &cp
   finish
 endif
 
