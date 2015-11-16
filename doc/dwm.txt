@@ -81,6 +81,24 @@ mapped:
   <c-l>     Shrink Master Pane Width
 
 
+Change default keybindings:
+If you need to change the default mappings, you may do so in your ~/.vimrc.
+>
+    " Use ^I/^U to grow/shrink master
+    nmap <C-i> <Plug>DWMGrowMaster
+    nmap <C-u> <Plug>DWMShrinkMaster
+<
+
+Available options:
+    DWMRotateCounterClockwise
+    DWMRotateClockwise
+    DWMNew
+    DWMClose
+    DWMFocus
+    DWMGrowMaster
+    DWMShrinkMaster
+
+
 ==============================================================================
 OPTIONS                                                          *dwm-options*
 
