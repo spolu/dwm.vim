@@ -70,7 +70,7 @@ function! DWM_New()
   " Move current master pane to the stack
   call DWM_Stack(1)
   " Create a vertical split
-  vert topleft new
+  vert topleft split
   call DWM_ResizeMasterPaneWidth()
 endfunction
 
