@@ -110,6 +110,11 @@ function! DWM_AutoEnter()
     return
   endif
 
+  " Skip if COC document or LanguageClient document
+  if @% == 'coc://document' || @% == '__LanguageClient__'
+    return
+  endif
+
   " Move new window to stack top
   wincmd K
 
